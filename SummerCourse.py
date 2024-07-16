@@ -55,6 +55,12 @@ def get_valid_locations(board):
 
 def computer_move(board):
     valid_locations = get_valid_locations(board)
+    for col in valid_locations:
+        row = get_next_open_row(board, col)
+        temp_board = [row[:] for row in board]
+        drop_piece(temp_board, row, col, 2)
+        if winning_move(temp_board, 2):
+            return col
     return random.choice(valid_locations)
 
 def main():
